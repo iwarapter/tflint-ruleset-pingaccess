@@ -1,28 +1,29 @@
 name: checks
 on:  push
 jobs:
-  tests:
+  checks:
     runs-on: ubuntu-latest
     env:
       GO111MODULE: on
     steps:
-      - name: Checkout Source
-        uses: actions/checkout@v2
+      - name: Set up Go
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.14
+        id: go
 
       - name: Install tools
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           go get -u honnef.co/go/tools/cmd/staticcheck
 
+      - name: Checkout Source
+        uses: actions/checkout@v2
+
       - name: Staticcheck
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           staticcheck ./...
-
-      - name: Run Gosec Security Scanner
-        uses: securego/gosec@master
-        with:
-          args: ./...
 
       - name: Check dependencies
         run: |
