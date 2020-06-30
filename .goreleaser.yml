@@ -1,0 +1,41 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - freebsd
+      - netbsd
+      - openbsd
+      - windows
+    goarch:
+      - 386
+      - amd64
+      - arm
+    binary: '{{ .ProjectName }}_v{{ .Version }}'
+    flags: |
+      -gcflags="-trimpath=$GOPATH" -asmflags="-trimpath=$GOPATH"
+archives:
+  - id: zip
+    name_template: "{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}"
+    format: zip
+    files:
+      - none*
+checksum:
+  name_template: 'checksums.txt'
+signs:
+  - artifacts: checksum
+    args:
+      - "--local-user"
+      - "BE9710A9C84DA5AA" # Replace this with your GPG signing key ID
+      - "--output"
+      - "${signature}"
+      - "--detach-sign"
+      - "${artifact}"
+release:
+  draft: true
+changelog:
+  skip: true

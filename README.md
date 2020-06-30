@@ -1,19 +1,19 @@
-# TFLint Ruleset Template
-[![Build Status](https://github.com/terraform-linters/tflint-ruleset-template/workflows/build/badge.svg?branch=master)](https://github.com/terraform-linters/tflint-ruleset-template/actions)
+# PingAccess Ruleset
+[![Build Status](https://github.com/iwarapter/tflint-ruleset-pingaccess/workflows/build/badge.svg?branch=master)](https://github.com/iwarapter/tflint-ruleset-pingaccess/actions)
 
-This is a template repository for building a custom ruleset. You can create a plugin repository from "Use this template".
+This ruleset provides various rules and best practices around the PingAccess terraform provider.
 
 ## Requirements
 
-- TFLint v0.14+
+- TFLint v0.17+
 - Go v1.14
 
 ## Installation
 
-Download the plugin and place it in `~/.tflint.d/plugins/tflint-ruleset-template` (or `./.tflint.d/plugins/tflint-ruleset-template`). When using the plugin, configure as follows in `.tflint.hcl`:
+Download the plugin and place it in `~/.tflint.d/plugins/tflint-ruleset-pingaccess` (or `./.tflint.d/plugins/tflint-ruleset-pingaccess`). When using the plugin, configure as follows in `.tflint.hcl`:
 
 ```hcl
-plugin "template" {
+plugin "pingaccess" {
     enabled = true
 }
 ```
@@ -22,7 +22,7 @@ plugin "template" {
 
 |Name|Description|Severity|Enabled|Link|
 | --- | --- | --- | --- | --- |
-|aws_instance_example_type|Show instance type|ERROR|✔||
+|pingaccess_pingfederate_runtime_duplicate|Rule for checking for duplicate `singleton` resource type|ERROR|✔||
 
 ## Building the plugin
 

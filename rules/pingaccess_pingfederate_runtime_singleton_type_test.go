@@ -7,7 +7,7 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/helper"
 )
 
-func Test_AwsInstanceExampleType(t *testing.T) {
+func Test_SingletonExampleType(t *testing.T) {
 	cases := []struct {
 		Name     string
 		Content  string
@@ -16,24 +16,28 @@ func Test_AwsInstanceExampleType(t *testing.T) {
 		{
 			Name: "issue found",
 			Content: `
-resource "aws_instance" "web" {
-    instance_type = "t2.micro"
+resource "pingaccess_pingfederate_runtime" "foo" {
+    issuer = "https://foo"
+}
+
+resource "pingaccess_pingfederate_runtime" "bar" {
+    issuer = "https://bar"
 }`,
 			Expected: helper.Issues{
 				{
-					Rule:    NewAwsInstanceExampleTypeRule(),
-					Message: "instance type is t2.micro",
+					Rule:    NewPingFederateRunetimeSingletonTypeRule(),
+					Message: "duplicate instance of pingaccess_pingfederate_runtime",
 					Range: hcl.Range{
 						Filename: "resource.tf",
-						Start:    hcl.Pos{Line: 3, Column: 21},
-						End:      hcl.Pos{Line: 3, Column: 31},
+						Start:    hcl.Pos{Line: 6, Column: 1},
+						End:      hcl.Pos{Line: 6, Column: 49},
 					},
 				},
 			},
 		},
 	}
 
-	rule := NewAwsInstanceExampleTypeRule()
+	rule := NewPingFederateRunetimeSingletonTypeRule()
 
 	for _, tc := range cases {
 		runner := helper.TestRunner(t, map[string]string{"resource.tf": tc.Content})
