@@ -8,11 +8,12 @@ import (
 
 func main() {
 	plugin.Serve(&plugin.ServeOpts{
-		RuleSet: tflint.RuleSet{
+		RuleSet: &tflint.BuiltinRuleSet{
 			Name:    "pingaccess",
 			Version: "0.1.0",
 			Rules: []tflint.Rule{
 				rules.NewPingFederateRunetimeSingletonTypeRule(),
+				rules.NewSiteSkipHostnameVerificationTypeRule(),
 			},
 		},
 	})

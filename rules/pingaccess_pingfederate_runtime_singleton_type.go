@@ -3,7 +3,8 @@ package rules
 import (
 	"fmt"
 
-	"github.com/terraform-linters/tflint-plugin-sdk/terraform"
+	"github.com/terraform-linters/tflint-plugin-sdk/terraform/configs"
+
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
@@ -43,7 +44,7 @@ func (r *PingFederateRunetimeSingletonTypeRule) Link() string {
 func (r *PingFederateRunetimeSingletonTypeRule) Check(runner tflint.Runner) error {
 	count := 0
 
-	return runner.WalkResources(r.resourceType, func(res *terraform.Resource) error {
+	return runner.WalkResources(r.resourceType, func(res *configs.Resource) error {
 		count++
 
 		if count > 1 {

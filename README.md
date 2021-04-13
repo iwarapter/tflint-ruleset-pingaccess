@@ -5,8 +5,8 @@ This ruleset provides various rules and best practices around the PingAccess ter
 
 ## Requirements
 
-- TFLint v0.17+
-- Go v1.14
+- TFLint v0.24+
+- Go v1.16
 
 ## Installation
 
@@ -23,6 +23,7 @@ plugin "pingaccess" {
 |Name|Description|Severity|Enabled|Link|
 | --- | --- | --- | --- | --- |
 |pingaccess_pingfederate_runtime_duplicate|Rule for checking for duplicate `singleton` resource type|ERROR|✔||
+|pingaccess_site_skip_hostname_verification_check|Rule for checking `pingaccess_site` `skip_hostname_verification` is not enabled|WARNING|✔||
 
 ## Building the plugin
 

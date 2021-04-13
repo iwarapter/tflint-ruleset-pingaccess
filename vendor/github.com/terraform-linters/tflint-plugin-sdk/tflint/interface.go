@@ -2,8 +2,32 @@ package tflint
 
 import (
 	"github.com/hashicorp/hcl/v2"
-	"github.com/terraform-linters/tflint-plugin-sdk/terraform"
+	"github.com/terraform-linters/tflint-plugin-sdk/terraform/configs"
+	"github.com/zclconf/go-cty/cty"
 )
+
+// RuleSet is a list of rules that a plugin should provide.
+// Normally, plugins can use BuiltinRuleSet directly,
+// but you can also use custom rulesets that satisfy this interface.
+type RuleSet interface {
+	// RuleSetName is the name of the ruleset. This method is not expected to be overridden.
+	RuleSetName() string
+
+	// RuleSetVersion is the version of the plugin. This method is not expected to be overridden.
+	RuleSetVersion() string
+
+	// RuleNames is a list of rule names provided by the plugin. This method is not expected to be overridden.
+	RuleNames() []string
+
+	// ApplyConfig reflects the configuration to the ruleset.
+	// Custom rulesets can override this method to reflect the plugin's own configuration.
+	// In that case, don't forget to call ApplyCommonConfig.
+	ApplyConfig(*Config) error
+
+	// Check runs inspection for each rule by applying Runner.
+	// This is a entrypoint for all inspections and can be used as a hook to inject a custom runner.
+	Check(Runner) error
+}
 
 // Runner acts as a client for each plugin to query the host process about the Terraform configurations.
 type Runner interface {
@@ -18,12 +42,44 @@ type Runner interface {
 
 	// WalkResources visits resources with the passed function.
 	// You must pass a resource type as the first argument.
-	WalkResources(string, func(*terraform.Resource) error) error
+	WalkResources(string, func(*configs.Resource) error) error
+
+	// WalkModuleCalls visits module calls with the passed function.
+	WalkModuleCalls(func(*configs.ModuleCall) error) error
+
+	// Backend returns the backend configuration, if any.
+	Backend() (*configs.Backend, error)
+
+	// Config returns the Terraform configuration.
+	// This object contains almost all accessible data structures from plugins.
+	Config() (*configs.Config, error)
+
+	// File returns the hcl.File object.
+	// This is low level API for accessing information such as comments and syntax.
+	// When accessing resources, expressions, etc, it is recommended to use high-level APIs.
+	File(string) (*hcl.File, error)
+
+	// RootProvider returns the provider configuration in the root module.
+	// It can be used by child modules to access the credentials defined in the root module.
+	RootProvider(name string) (*configs.Provider, error)
+
+	// DecodeRuleConfig fetches the rule's configuration and reflects the result in ret.
+	DecodeRuleConfig(name string, ret interface{}) error
 
 	// EvaluateExpr evaluates the passed expression and reflects the result in ret.
+	// If you want to ensure the type of ret, you can pass the type as the 3rd argument.
+	// If you pass nil as the type, it will be inferred from the type of ret.
 	// Since this function returns an application error, it is expected to use the EnsureNoError
 	// to determine whether to continue processing.
-	EvaluateExpr(expr hcl.Expression, ret interface{}) error
+	EvaluateExpr(expr hcl.Expression, ret interface{}, wantType *cty.Type) error
+
+	// EvaluateExprOnRootCtx is the equivalent of EvaluateExpr method in the context of the root module.
+	// Its main use is to evaluate the provider block obtained by the RootProvider method.
+	EvaluateExprOnRootCtx(expr hcl.Expression, ret interface{}, wantType *cty.Type) error
+
+	// IsNullExpr checks whether the passed expression is null or not.
+	// This returns an error when the passed expression is invalid, occurs evaluation errors, etc.
+	IsNullExpr(expr hcl.Expression) (bool, error)
 
 	// EmitIssue sends an issue with an expression to TFLint. You need to pass the message of the issue and the expression.
 	EmitIssueOnExpr(rule Rule, message string, expr hcl.Expression) error
