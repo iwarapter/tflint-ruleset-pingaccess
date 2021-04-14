@@ -15,6 +15,7 @@ func main() {
 				rules.NewPingFederateRunetimeSingletonTypeRule(),
 				rules.NewSiteSkipHostnameVerificationTypeRule(),
 				rules.NewSiteSecureEnabledTypeRule(),
+				rules.NewApplicationRequireHttpsEnabledTypeCheck(),
 			},
 		},
 	})
