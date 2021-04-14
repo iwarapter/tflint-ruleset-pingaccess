@@ -24,6 +24,7 @@ plugin "pingaccess" {
 | --- | --- | --- | --- | --- |
 |pingaccess_pingfederate_runtime_duplicate|Rule for checking for duplicate `singleton` resource type|ERROR|✔||
 |pingaccess_site_skip_hostname_verification_check|Rule for checking `pingaccess_site` `skip_hostname_verification` is not enabled|WARNING|✔||
+|pingaccess_site_secure_check|Rule for checking `pingaccess_site` `secure` is set to `true`|WARNING|✔||
 
 ## Building the plugin
 
