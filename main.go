@@ -14,6 +14,7 @@ func main() {
 			Rules: []tflint.Rule{
 				rules.NewPingFederateRunetimeSingletonTypeRule(),
 				rules.NewSiteSkipHostnameVerificationTypeRule(),
+				rules.NewSiteSecureEnabledTypeRule(),
 			},
 		},
 	})
