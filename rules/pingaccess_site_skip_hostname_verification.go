@@ -7,40 +7,40 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
-// SiteSkipHostnameVerificationTypeRule checks whether ...
-type SiteSkipHostnameVerificationTypeRule struct {
+// SiteSkipHostnameVerificationRule checks whether ...
+type SiteSkipHostnameVerificationRule struct {
 	resourceType string
 }
 
-// NewSiteSkipHostnameVerificationTypeRule returns a new rule
-func NewSiteSkipHostnameVerificationTypeRule() *SiteSkipHostnameVerificationTypeRule {
-	return &SiteSkipHostnameVerificationTypeRule{
+// NewSiteSkipHostnameVerificationRule returns a new rule
+func NewSiteSkipHostnameVerificationRule() *SiteSkipHostnameVerificationRule {
+	return &SiteSkipHostnameVerificationRule{
 		resourceType: "pingaccess_site",
 	}
 }
 
 // Name returns the rule name
-func (r *SiteSkipHostnameVerificationTypeRule) Name() string {
+func (r *SiteSkipHostnameVerificationRule) Name() string {
 	return "pingaccess_site_skip_hostname_verification_check"
 }
 
 // Enabled returns whether the rule is enabled by default
-func (r *SiteSkipHostnameVerificationTypeRule) Enabled() bool {
+func (r *SiteSkipHostnameVerificationRule) Enabled() bool {
 	return true
 }
 
 // Severity returns the rule severity
-func (r *SiteSkipHostnameVerificationTypeRule) Severity() string {
+func (r *SiteSkipHostnameVerificationRule) Severity() string {
 	return tflint.WARNING
 }
 
 // Link returns the rule reference link
-func (r *SiteSkipHostnameVerificationTypeRule) Link() string {
+func (r *SiteSkipHostnameVerificationRule) Link() string {
 	return ""
 }
 
 // Check checks whether ...
-func (r *SiteSkipHostnameVerificationTypeRule) Check(runner tflint.Runner) error {
+func (r *SiteSkipHostnameVerificationRule) Check(runner tflint.Runner) error {
 	return runner.WalkResourceAttributes("pingaccess_site", "skip_hostname_verification", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)

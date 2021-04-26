@@ -7,7 +7,7 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/helper"
 )
 
-func Test_ApplicationRequireHttpsEnabledTypeRule(t *testing.T) {
+func Test_ApplicationRequireHttpsEnabledRule(t *testing.T) {
 	cases := []struct {
 		Name     string
 		Content  string
@@ -28,7 +28,7 @@ resource "pingaccess_application" "demo" {
 }`,
 			Expected: helper.Issues{
 				{
-					Rule:    NewApplicationRequireHttpsEnabledTypeCheck(),
+					Rule:    NewApplicationRequireHttpsEnabledRule(),
 					Message: "require_https is false",
 					Range: hcl.Range{
 						Filename: "resource.tf",
@@ -69,7 +69,7 @@ resource "pingaccess_application" "demo" {
 		},
 	}
 
-	rule := NewApplicationRequireHttpsEnabledTypeCheck()
+	rule := NewApplicationRequireHttpsEnabledRule()
 
 	for _, tc := range cases {
 		t.Run(tc.Name, func(t *testing.T) {

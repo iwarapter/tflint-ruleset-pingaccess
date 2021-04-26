@@ -7,40 +7,40 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
-// ApplicationRequireHttpsEnabledTypeCheck checks whether ...
-type ApplicationRequireHttpsEnabledTypeCheck struct {
+// ApplicationRequireHttpsEnabledRule checks whether ...
+type ApplicationRequireHttpsEnabledRule struct {
 	resourceType string
 }
 
-// NewApplicationRequireHttpsEnabledTypeCheck returns a new rule
-func NewApplicationRequireHttpsEnabledTypeCheck() *ApplicationRequireHttpsEnabledTypeCheck {
-	return &ApplicationRequireHttpsEnabledTypeCheck{
+// NewApplicationRequireHttpsEnabledRule returns a new rule
+func NewApplicationRequireHttpsEnabledRule() *ApplicationRequireHttpsEnabledRule {
+	return &ApplicationRequireHttpsEnabledRule{
 		resourceType: "pingaccess_application",
 	}
 }
 
 // Name returns the rule name
-func (r *ApplicationRequireHttpsEnabledTypeCheck) Name() string {
+func (r *ApplicationRequireHttpsEnabledRule) Name() string {
 	return "pingaccess_application_requite_https_enabled_check"
 }
 
 // Enabled returns whether the rule is enabled by default
-func (r *ApplicationRequireHttpsEnabledTypeCheck) Enabled() bool {
+func (r *ApplicationRequireHttpsEnabledRule) Enabled() bool {
 	return true
 }
 
 // Severity returns the rule severity
-func (r *ApplicationRequireHttpsEnabledTypeCheck) Severity() string {
+func (r *ApplicationRequireHttpsEnabledRule) Severity() string {
 	return tflint.WARNING
 }
 
 // Link returns the rule reference link
-func (r *ApplicationRequireHttpsEnabledTypeCheck) Link() string {
+func (r *ApplicationRequireHttpsEnabledRule) Link() string {
 	return ""
 }
 
 // Check checks whether ...
-func (r *ApplicationRequireHttpsEnabledTypeCheck) Check(runner tflint.Runner) error {
+func (r *ApplicationRequireHttpsEnabledRule) Check(runner tflint.Runner) error {
 	return runner.WalkResourceAttributes("pingaccess_application", "require_https", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)

@@ -7,7 +7,7 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/helper"
 )
 
-func Test_SiteSkipHostnameVerificationTypeRule(t *testing.T) {
+func Test_SiteSkipHostnameVerificationRule(t *testing.T) {
 	cases := []struct {
 		Name     string
 		Content  string
@@ -27,7 +27,7 @@ resource "pingaccess_site" "example1" {
 }`,
 			Expected: helper.Issues{
 				{
-					Rule:    NewSiteSkipHostnameVerificationTypeRule(),
+					Rule:    NewSiteSkipHostnameVerificationRule(),
 					Message: "skip_hostname_verification is true",
 					Range: hcl.Range{
 						Filename: "resource.tf",
@@ -66,7 +66,7 @@ resource "pingaccess_site" "example1" {
 		},
 	}
 
-	rule := NewSiteSkipHostnameVerificationTypeRule()
+	rule := NewSiteSkipHostnameVerificationRule()
 
 	for _, tc := range cases {
 		t.Run(tc.Name, func(t *testing.T) {

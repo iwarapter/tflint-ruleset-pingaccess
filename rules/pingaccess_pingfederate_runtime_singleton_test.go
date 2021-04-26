@@ -25,7 +25,7 @@ resource "pingaccess_pingfederate_runtime" "bar" {
 }`,
 			Expected: helper.Issues{
 				{
-					Rule:    NewPingFederateRunetimeSingletonTypeRule(),
+					Rule:    NewPingFederateRunetimeSingletonRule(),
 					Message: "duplicate instance of pingaccess_pingfederate_runtime",
 					Range: hcl.Range{
 						Filename: "resource.tf",
@@ -37,7 +37,7 @@ resource "pingaccess_pingfederate_runtime" "bar" {
 		},
 	}
 
-	rule := NewPingFederateRunetimeSingletonTypeRule()
+	rule := NewPingFederateRunetimeSingletonRule()
 
 	for _, tc := range cases {
 		runner := helper.TestRunner(t, map[string]string{"resource.tf": tc.Content})
