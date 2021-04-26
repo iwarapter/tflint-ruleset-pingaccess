@@ -69,18 +69,4 @@ func (r *ThirdPartyServiceSecureEnabledRule) Check(runner tflint.Runner) error {
 			resource.DeclRange,
 		)
 	})
-	//return runner.WalkResourceAttributes("pingaccess_third_party_service", "secure", func(attribute *hcl.Attribute) error {
-	//	var value string
-	//	err := runner.EvaluateExpr(attribute.Expr, &value, nil)
-	//	if value == "false" {
-	//		return runner.EnsureNoError(err, func() error {
-	//			return runner.EmitIssueOnExpr(
-	//				r,
-	//				fmt.Sprintf("secure is %s", value),
-	//				attribute.Expr,
-	//			)
-	//		})
-	//	}
-	//	return nil
-	//})
 }

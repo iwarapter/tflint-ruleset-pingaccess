@@ -33,6 +33,7 @@ plugin "pingaccess" {
 |pingaccess_trusted_certificate_group_skip_certificate_date_check|Rule for checking `pingaccess_trusted_certificate` `skip_certificate_date_check` is not set to `true`|WARNING|✔||
 |pingaccess_engine_listener_secure_check|Rule for checking `pingaccess_engine_listener` `secure` is not set to `false`|WARNING|✔||
 |pingaccess_websession_secure_cookie_check|Rule for checking `pingaccess_websession` `secure_cookie` is not set to `false`|WARNING|✔||
+|pingaccess_websession_pkce_challenge_type_check|Rule for checking `pingaccess_websession` `pkce_challenge_type` is not set to `OFF`|WARNING|✔||
 
 ## Building the plugin
 

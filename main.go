@@ -22,6 +22,7 @@ func main() {
 				rules.NewTrustedCertificateGroupsIgnoreAllCertificateErrorsRule(),
 				rules.NewTrustedCertificateGroupsSkipCertificateDateCheckRule(),
 				rules.NewWebsessionSecureCookieEnabledRule(),
+				rules.NewWebsessionPkceChallengeTypeRule(),
 			},
 		},
 	})
