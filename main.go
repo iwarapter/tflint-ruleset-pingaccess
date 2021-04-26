@@ -21,6 +21,7 @@ func main() {
 				rules.NewThirdPartyServiceSkipHostnameVerificationRule(),
 				rules.NewTrustedCertificateGroupsIgnoreAllCertificateErrorsRule(),
 				rules.NewTrustedCertificateGroupsSkipCertificateDateCheckRule(),
+				rules.NewWebsessionSecureCookieEnabledRule(),
 			},
 		},
 	})

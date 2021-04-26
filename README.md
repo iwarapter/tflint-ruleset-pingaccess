@@ -32,6 +32,7 @@ plugin "pingaccess" {
 |pingaccess_trusted_certificate_group_ignore_all_certificate_errors_check|Rule for checking `pingaccess_trusted_certificate` `ignore_all_certificate_errors` is not set to `true`|WARNING|✔||
 |pingaccess_trusted_certificate_group_skip_certificate_date_check|Rule for checking `pingaccess_trusted_certificate` `skip_certificate_date_check` is not set to `true`|WARNING|✔||
 |pingaccess_engine_listener_secure_check|Rule for checking `pingaccess_engine_listener` `secure` is not set to `false`|WARNING|✔||
+|pingaccess_websession_secure_cookie_check|Rule for checking `pingaccess_websession` `secure_cookie` is not set to `false`|WARNING|✔||
 
 ## Building the plugin
 
