@@ -41,7 +41,7 @@ func (r *ApplicationRequireHttpsEnabledRule) Link() string {
 
 // Check checks whether ...
 func (r *ApplicationRequireHttpsEnabledRule) Check(runner tflint.Runner) error {
-	return runner.WalkResourceAttributes("pingaccess_application", "require_https", func(attribute *hcl.Attribute) error {
+	return runner.WalkResourceAttributes(r.resourceType, "require_https", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)
 		if value == "false" {

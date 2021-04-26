@@ -41,7 +41,7 @@ func (r *TrustedCertificateGroupsIgnoreAllCertificateErrorsRule) Link() string {
 
 // Check checks whether ...
 func (r *TrustedCertificateGroupsIgnoreAllCertificateErrorsRule) Check(runner tflint.Runner) error {
-	return runner.WalkResourceAttributes("pingaccess_trusted_certificate_group", "ignore_all_certificate_errors", func(attribute *hcl.Attribute) error {
+	return runner.WalkResourceAttributes(r.resourceType, "ignore_all_certificate_errors", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)
 		if value == "true" {

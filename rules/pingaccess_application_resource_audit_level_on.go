@@ -41,7 +41,7 @@ func (r *ApplicationResourceAuditLevelONRule) Link() string {
 
 // Check checks whether ...
 func (r *ApplicationResourceAuditLevelONRule) Check(runner tflint.Runner) error {
-	return runner.WalkResourceAttributes("pingaccess_application_resource", "audit_level", func(attribute *hcl.Attribute) error {
+	return runner.WalkResourceAttributes(r.resourceType, "audit_level", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)
 		if value == "OFF" {

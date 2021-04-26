@@ -41,7 +41,7 @@ func (r *TrustedCertificateGroupsSkipCertificateDateCheckRule) Link() string {
 
 // Check checks whether ...
 func (r *TrustedCertificateGroupsSkipCertificateDateCheckRule) Check(runner tflint.Runner) error {
-	return runner.WalkResourceAttributes("pingaccess_trusted_certificate_group", "skip_certificate_date_check", func(attribute *hcl.Attribute) error {
+	return runner.WalkResourceAttributes(r.resourceType, "skip_certificate_date_check", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)
 		if value == "true" {

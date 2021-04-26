@@ -41,7 +41,7 @@ func (r *ThirdPartyServiceSkipHostnameVerificationRule) Link() string {
 
 // Check checks whether ...
 func (r *ThirdPartyServiceSkipHostnameVerificationRule) Check(runner tflint.Runner) error {
-	return runner.WalkResourceAttributes("pingaccess_third_party_service", "skip_hostname_verification", func(attribute *hcl.Attribute) error {
+	return runner.WalkResourceAttributes(r.resourceType, "skip_hostname_verification", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)
 		if value == "true" {

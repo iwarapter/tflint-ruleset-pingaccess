@@ -41,7 +41,7 @@ func (r *ThirdPartyServiceSecureEnabledRule) Link() string {
 
 // Check checks whether ...
 func (r *ThirdPartyServiceSecureEnabledRule) Check(runner tflint.Runner) error {
-	return runner.WalkResources("pingaccess_third_party_service", func(resource *configs.Resource) error {
+	return runner.WalkResources(r.resourceType, func(resource *configs.Resource) error {
 		attrs, diags := resource.Config.JustAttributes()
 		if diags.HasErrors() {
 			return diags

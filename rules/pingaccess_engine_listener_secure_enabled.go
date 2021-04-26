@@ -7,40 +7,40 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
 )
 
-// SiteSecureEnabledRule checks whether ...
-type SiteSecureEnabledRule struct {
+// EngineListenderSecureEnabledRule checks whether ...
+type EngineListenderSecureEnabledRule struct {
 	resourceType string
 }
 
-// NewSiteSecureEnabledRule returns a new rule
-func NewSiteSecureEnabledRule() *SiteSecureEnabledRule {
-	return &SiteSecureEnabledRule{
-		resourceType: "pingaccess_site",
+// NewEngineListenderSecureEnabledRule returns a new rule
+func NewEngineListenderSecureEnabledRule() *EngineListenderSecureEnabledRule {
+	return &EngineListenderSecureEnabledRule{
+		resourceType: "pingaccess_engine_listener",
 	}
 }
 
 // Name returns the rule name
-func (r *SiteSecureEnabledRule) Name() string {
-	return "pingaccess_site_secure_check"
+func (r *EngineListenderSecureEnabledRule) Name() string {
+	return "pingaccess_engine_listener_secure_check"
 }
 
 // Enabled returns whether the rule is enabled by default
-func (r *SiteSecureEnabledRule) Enabled() bool {
+func (r *EngineListenderSecureEnabledRule) Enabled() bool {
 	return true
 }
 
 // Severity returns the rule severity
-func (r *SiteSecureEnabledRule) Severity() string {
+func (r *EngineListenderSecureEnabledRule) Severity() string {
 	return tflint.WARNING
 }
 
 // Link returns the rule reference link
-func (r *SiteSecureEnabledRule) Link() string {
+func (r *EngineListenderSecureEnabledRule) Link() string {
 	return ""
 }
 
 // Check checks whether ...
-func (r *SiteSecureEnabledRule) Check(runner tflint.Runner) error {
+func (r *EngineListenderSecureEnabledRule) Check(runner tflint.Runner) error {
 	return runner.WalkResourceAttributes(r.resourceType, "secure", func(attribute *hcl.Attribute) error {
 		var value string
 		err := runner.EvaluateExpr(attribute.Expr, &value, nil)
