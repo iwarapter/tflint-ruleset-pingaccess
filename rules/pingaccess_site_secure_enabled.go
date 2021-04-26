@@ -36,7 +36,7 @@ func (r *SiteSecureEnabledRule) Severity() string {
 
 // Link returns the rule reference link
 func (r *SiteSecureEnabledRule) Link() string {
-	return ""
+	return referenceLink(r.Name())
 }
 
 // Check checks whether ...
