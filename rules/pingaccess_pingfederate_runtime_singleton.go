@@ -22,7 +22,7 @@ func NewPingFederateRunetimeSingletonRule() *PingFederateRunetimeSingletonRule {
 
 // Name returns the rule name
 func (r *PingFederateRunetimeSingletonRule) Name() string {
-	return "pingaccess_pingfederate_runtime_duplicate"
+	return "pingaccess_pingfederate_runtime_duplicate_check"
 }
 
 // Enabled returns whether the rule is enabled by default

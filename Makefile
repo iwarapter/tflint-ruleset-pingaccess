@@ -6,7 +6,7 @@ ifndef GIT_COMMIT
   GIT_COMMIT := git-$(shell git rev-parse --short HEAD)
 endif
 
-LDFLAGS=-X $(PKG)/rules.COMMIT=$(GIT_COMMIT) -X $(PKG)/rules.RELEASE=$(TAG) -X $(PKG)/rules.REPO=$(REPO_INFO)
+LDFLAGS=-X main.version=$(TAG) -X $(PKG)/rules.version=$(TAG)
 
 default: build
 

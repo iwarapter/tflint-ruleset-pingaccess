@@ -69,18 +69,4 @@ func (r *WebsessionPkceChallengeTypeRule) Check(runner tflint.Runner) error {
 			resource.DeclRange,
 		)
 	})
-	//return runner.WalkResourceAttributes(r.resourceType, "pkce_challenge_type", func(attribute *hcl.Attribute) error {
-	//	var value string
-	//	err := runner.EvaluateExpr(attribute.Expr, &value, nil)
-	//	if value == "OFF" {
-	//		return runner.EnsureNoError(err, func() error {
-	//			return runner.EmitIssueOnExpr(
-	//				r,
-	//				fmt.Sprintf("pkce_challenge_type is %s", value),
-	//				attribute.Expr,
-	//			)
-	//		})
-	//	}
-	//	return nil
-	//})
 }

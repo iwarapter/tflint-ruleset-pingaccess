@@ -31,7 +31,7 @@ resource "pingaccess_site" "example1" {
 }
 ```
 
-```
+```console
 $ tflint
 1 issue(s) found:
 
@@ -43,7 +43,7 @@ Warning: secure is false (pingaccess_site_secure_check)
 
 ## Why
 
-Use of unencrypted backend sites in insecure.
+Use of unencrypted backend sites is in insecure.
 
 ## How To Fix
 

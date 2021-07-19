@@ -23,7 +23,6 @@ func main() {
 				rules.NewApplicationResourceAuditLevelONRule(),
 				rules.NewThirdPartyServiceSecureEnabledRule(),
 				rules.NewThirdPartyServiceSkipHostnameVerificationRule(),
-				rules.NewTrustedCertificateGroupsIgnoreAllCertificateErrorsRule(),
 				rules.NewTrustedCertificateGroupsSkipCertificateDateCheckRule(),
 				rules.NewWebsessionSecureCookieEnabledRule(),
 				rules.NewWebsessionPkceChallengeTypeRule(),
