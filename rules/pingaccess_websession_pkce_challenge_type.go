@@ -2,6 +2,7 @@ package rules
 
 import (
 	"fmt"
+
 	"github.com/terraform-linters/tflint-plugin-sdk/terraform/configs"
 
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
@@ -36,14 +37,14 @@ func (r *WebsessionPkceChallengeTypeRule) Severity() string {
 
 // Link returns the rule reference link
 func (r *WebsessionPkceChallengeTypeRule) Link() string {
-	return ""
+	return referenceLink(r.Name())
 }
 
 // Check checks whether ...
 func (r *WebsessionPkceChallengeTypeRule) Check(runner tflint.Runner) error {
 	return runner.WalkResources(r.resourceType, func(resource *configs.Resource) error {
 		attrs, diags := resource.Config.JustAttributes()
-		if diags.HasErrors() && len(attrs) == 0{
+		if diags.HasErrors() && len(attrs) == 0 {
 			return diags
 		}
 		for _, attribute := range attrs {

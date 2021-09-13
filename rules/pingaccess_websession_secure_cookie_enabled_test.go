@@ -7,7 +7,7 @@ import (
 	"github.com/terraform-linters/tflint-plugin-sdk/helper"
 )
 
-func Test_WebsessionSecureCookieEnabledRule(t *testing.T) {
+func Test_WebsessionSecureCookieRule(t *testing.T) {
 	cases := []struct {
 		Name     string
 		Content  string
@@ -30,7 +30,7 @@ resource "pingaccess_websession" "example" {
 }`,
 			Expected: helper.Issues{
 				{
-					Rule:    NewWebsessionSecureCookieEnabledRule(),
+					Rule:    NewWebsessionSecureCookieRule(),
 					Message: "secure_cookie is false",
 					Range: hcl.Range{
 						Filename: "resource.tf",
@@ -75,7 +75,7 @@ resource "pingaccess_websession" "example" {
 		},
 	}
 
-	rule := NewWebsessionSecureCookieEnabledRule()
+	rule := NewWebsessionSecureCookieRule()
 
 	for _, tc := range cases {
 		t.Run(tc.Name, func(t *testing.T) {
