@@ -8,5 +8,5 @@ var (
 
 // ReferenceLink returns the rule reference link
 func referenceLink(name string) string {
-	return fmt.Sprintf("https://github.com/iwarapter/tflint-ruleset-pingaccess/blob/v%s/docs/rules/%s.md", version , name)
+	return fmt.Sprintf("https://github.com/iwarapter/tflint-ruleset-pingaccess/blob/v%s/docs/rules/%s.md", version, name)
 }

@@ -2,6 +2,7 @@ package rules
 
 import (
 	"fmt"
+
 	"github.com/hashicorp/hcl/v2"
 
 	"github.com/terraform-linters/tflint-plugin-sdk/tflint"
@@ -36,7 +37,7 @@ func (r *SiteSkipHostnameVerificationRule) Severity() string {
 
 // Link returns the rule reference link
 func (r *SiteSkipHostnameVerificationRule) Link() string {
-	return ""
+	return referenceLink(r.Name())
 }
 
 // Check checks whether ...
