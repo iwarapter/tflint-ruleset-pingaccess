@@ -1,6 +1,7 @@
 # PingAccess Ruleset
 
 [![Build Status](https://github.com/iwarapter/tflint-ruleset-pingaccess/workflows/build/badge.svg?branch=master)](https://github.com/iwarapter/tflint-ruleset-pingaccess/actions)
+[![Github All Releases](https://img.shields.io/github/downloads/iwarapter/tflint-ruleset-pingaccess/total.svg)]()
 
 This ruleset provides various rules and best practices around the PingAccess terraform provider.
 
@@ -14,7 +15,7 @@ The plugin can be configured with the following config block to download and ins
 ```hcl
 plugin "pingaccess" {
     enabled = true
-    version = "0.0.1"
+    version = "0.0.2"
     source  = "github.com/iwarapter/tflint-ruleset-pingaccess"
 
     signing_key = <<-KEY
